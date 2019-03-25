@@ -3,7 +3,7 @@ The purpose of this project is to demonstrate my ability to collect, work with, 
 Data analysed is collected from the Accelerometers of the Samsung Galaxy S smartphone, whose full description is [here](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
 
 
-## THE SCRIPTS WORK
+## THE SCRIPTS 
 
 ### CodeBook.md
 Codebook.md describes the variables, the data, and any transformations or work that I performed in run_analysis.R to clean up the data.
@@ -18,3 +18,9 @@ It downloads the data set of Human Activity Recognition using Samsung Galaxy S s
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 **SubjectActivityVmeans.csv** is the tidy data set produced after the above steps
+
+
+#### Acknowledgments
+* John Hopkins Bloomberg School of Public Health
+* Jeffrey Leek
+* Roger Peng

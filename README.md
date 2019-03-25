@@ -20,6 +20,9 @@ It downloads the data set of Human Activity Recognition using Samsung Galaxy S s
 **SubjectActivityVmeans.csv** is the tidy data set produced after the above steps
 
 
+
+
+
 #### Acknowledgments
 * John Hopkins Bloomberg School of Public Health
 * Jeffrey Leek

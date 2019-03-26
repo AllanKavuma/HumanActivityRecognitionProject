@@ -5,14 +5,13 @@ Date: "25/03/2019"
 Project: "Human Activity Recognition using Smartphones"
 ---
 
-describes the variables, the data, and any transformations or work that you performed to clean up the data
 
 ## Project Description
 The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set using data collected from 
 accelerometers of Samsung Galaxy S smartphone.
 
 
-## Data
+### Data
 The data for project is downloaded here: (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
 and stored in folder "UCI HAR Dataset"
 #### The dataset includes the following files:
@@ -44,45 +43,26 @@ and stored in folder "UCI HAR Dataset"
 - 'testSubject': Dataframe for test subjects, from subject_test.txt file
 - 'trainSubject': Dataframe for train subjects, from subject_train.txt file
 
-## 1. Merges the training and the test sets to create one data set.
+### 1. Merges the training and the test sets to create one data set.
 - 'traintestData': combines the trainData and testData dataframes; and assigned names in features dataset
 - 'traintestActivity': combines the trainActivity and testActivity dataframes
 - 'traintestSubject': combines the trainSubject and testSubject dataframes 
-- 'completeData': combines all above 3 dataframes into one having activities, subjects and features
+- 'completeData': combines all above 3 dataframes into one data set having activities, subjects and features
 
-## 2. Extracts only the measurements on the mean and standard deviation for each measurement.
+### 2. Extracts only the measurements on the mean and standard deviation for each measurement.
 -'IndMeanStd': stores indices that will be used to extract measurements on only the mean and standard deviation
 -'dataMeanStd': uses indices from IndMeanStd to get Data extracts on only the mean and standard deviation
 
 
-## 3. Uses descriptive activity names to name the activities in the data set
-activityDf <- read.table("activity_labels.txt")
-actLow <- tolower(sapply(activityDf$V2, function(x) gsub("_", " ", x)))
-#now label all names with activity
-completeData$activity <- factor(completeData$activity, labels = actLow)
+### 3. Uses descriptive activity names to name the activities in the data set
+- 'activityDf': dataframe that stores the different activities in the activity_labels.txt file
+- 'actLow': vector to store all activity labels in lower case and having \"\_\" charaters and white spaces removed. It is turned into factor variable and values assigned to values in activity variable of the complete data
 
 
-## 4. Appropriately labels the data set with descriptive variable names.
-names(completeData) <- sapply(names(completeData), function(x) gsub("\\(", "", x))
-names(completeData) <- sapply(names(completeData), function(x) gsub("\\)", "", x))
-names(completeData) <- sapply(names(completeData), function(x) gsub("\\-", "", x))
-names(completeData) <- sapply(names(completeData), function(x) gsub("\\,", "", x))
-names(completeData) <- sapply(names(completeData), function(x) gsub(" ", "", x))
-names(completeData) <- sapply(names(completeData), function(x) gsub("Acc", "Accelerometer", x))
-names(completeData) <- sapply(names(completeData), function(x) gsub("Gyro", " Gyroscope", x))
+### 4. Appropriately labels the data set with descriptive variable names.
+- variable names of completeData are turned into descriptive variable names by removing \"\,\", \"\\\", \"\-\", characters and white spaces; turning \"Acc\" and \"Gyro\" short forms into full names of \"Accelerometer\" and \"Gyroscope\"; and turning all names to lower case
 
-
-# 5. From the data set in step 4, creates a second, independent tidy data 
-#set with the average of each variable for each activity and 
-#each subject.
-
-#Melt the complete data set with focus id variables of subject and activity
-#while melting the rest of the varibles about these
-compMelt <- melt(completeData, id = c("subject", "activity"))
-
-#recasting the compMelt melted data set into one with varible means
-#of all the variables matching subject and activity varibles
-SubjectActivity_Vmeans <- dcast(compMelt,subject+activity ~ variable, mean )
-
-#write result dataframe to file
-write.csv(SubjectActivity_Vmeans, file = "SubjectActivityVmeans.csv", row.names = FALSE)
+### 5. From the data set in step 4, creates a second, independent tidy data 
+- 'compMelt': While maintaining the subject and activity as the id variables, the rest of the variables of completeData are melted and result stored in compMelt dataframe 
+- 'SubjectActivity_Vmeans': The compMelt melted dataframe is recast to a dataframe having means of the different variables matching the different subjects and activities; and stored in SubjectActivity_Vmeans dataframe
+- The result is stored in a file named SubjectActivityVmeans.csv

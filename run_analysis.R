@@ -104,5 +104,3 @@ SubjectActivity_Vmeans <- dcast(compMelt,subject+activity ~ variable, mean )
 #write result dataframe to file
 write.table(SubjectActivity_Vmeans, file = "SubjectActivityVmeans.csv", row.names = FALSE)
 
-## Exit the directory having the files
-setwd("..")

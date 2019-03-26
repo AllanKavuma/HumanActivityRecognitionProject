@@ -102,5 +102,5 @@ compMelt <- melt(completeData, id = c("subject", "activity"))
 SubjectActivity_Vmeans <- dcast(compMelt,subject+activity ~ variable, mean )
 
 #write result dataframe to file
-write.table(SubjectActivity_Vmeans, file = "SubjectActivityVmeans.csv", row.names = FALSE)
+write.table(SubjectActivity_Vmeans, file = "SubjectActivityVmeans.txt", row.names = FALSE)
 
